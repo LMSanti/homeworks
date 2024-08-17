@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Tarea</title>
+</head>
+<body>
+<h1 th:text="${homework.id == null} ? 'Crear Nueva Tarea' : 'Editar Tarea'"></h1>
+<form th:action="@{/homework/save}" th:object="${homework}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <label for="title">Título:</label>
+    <input type="text" id="title" th:field="*{title}" required />
+
+    <label for="description">Descripción:</label>
+    <textarea id="description" th:field="*{description}"></textarea>
+
+    <label for="status">Estado:</label>
+    <input type="text" id="status" th:field="*{status}" required />
+
+    <button type="submit">Guardar</button>
+    <a href="/homework/list">Cancelar</a>
+</form>
+</body>
+</html>

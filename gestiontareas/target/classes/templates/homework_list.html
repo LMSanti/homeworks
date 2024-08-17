@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+</head>
+<body>
+<h1>Lista de Tareas</h1>
+<a href="/homework/new">Crear Nueva Tarea</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Fecha de Creación</th>
+        <th>Hora de Creación</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="homework : ${homeworks}">
+        <td th:text="${homework.id}"></td>
+        <td th:text="${homework.title}"></td>
+        <td th:text="${homework.dateCreation}"></td>
+        <td th:text="${homework.timeCreation}"></td>
+        <td th:text="${homework.status}"></td>
+        <td><a th:href="@{'/homework/' + ${homework.id} + '/view'}">Ver detalles</a></td>
+        <td><a th:href="@{/homework/{id}/delete(id=${homework.id})}" th:onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?');">Eliminar</a></td>
+        <td><a th:href="@{/homework/{id}/edit(id=${homework.id})}">Editar</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
